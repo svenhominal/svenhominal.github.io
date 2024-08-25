@@ -173,10 +173,11 @@
             e.preventDefault();
             const name = document.getElementById('commentName').value;
             const message = document.getElementById('commentMessage').value;
+            const date = new Date().toLocaleString();
 
             const commentContainer = document.createElement('div');
             commentContainer.classList.add('comment');
-            commentContainer.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+            commentContainer.innerHTML = `<strong>${name}</strong> <em>${date}</em><p>${message}</p>`;
 
             document.getElementById('commentsContainer').appendChild(commentContainer);
 
