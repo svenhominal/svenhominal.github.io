@@ -35,6 +35,15 @@
         .zoom:hover {
             transform: scale(1.5); /* (150% zoom) */
         }
+        .comment-section {
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .comment {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -53,8 +62,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownHome">
                         <a class="dropdown-item" href="#header21">Grande Ourse</a>
                         <a class="dropdown-item" href="#header22">Etoile filante</a>
-                        <a class="dropdown-item" href="#header24">Fort Boyard</a>
+                        <a class="dropdown-item" href="#header24">Vidéo</a>
                         <a class="dropdown-item" href="#header23">Remerciements</a>
+                        <a class="dropdown-item" href="#header25">Commentaire</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -111,7 +121,6 @@
     <div class="container mt-5">
         <div class="poem">  
             <p>Le 21 est beau.</p>
- 
         </div>
     </div>  
 
@@ -119,6 +128,29 @@
     <div class="container text-center mt-5 mb-5" style="margin-bottom: 800px;">
         <img src="images/funnydogs-cute.gif" alt="Funny GIF" class="zoom" width="300" height="300">
     </div>  
+
+    <!-- Green Header 25 -->
+    <header id="header25" class="bg-primary text-white text-center py-3 mt-5 header-space">
+        <h1 class="font-weight-bold">Commentaire</h1>
+    </header>
+
+    <!-- Comment Form -->
+    <div class="container mt-5 comment-section">
+        <form id="commentForm">
+            <div class="form-group">
+                <label for="commentName">Name</label>
+                <input type="text" class="form-control" id="commentName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="commentMessage">Comment</label>
+                <textarea class="form-control" id="commentMessage" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Publish</button>
+        </form>
+        <div id="commentsContainer" class="mt-5">
+            <!-- Comments will be displayed here -->
+        </div>
+    </div>
 
     <!-- Spacer to ensure 800px space at the end of the page -->
     <div style="height: 800px;"></div>
@@ -135,6 +167,21 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('commentName').value;
+            const message = document.getElementById('commentMessage').value;
+
+            const commentContainer = document.createElement('div');
+            commentContainer.classList.add('comment');
+            commentContainer.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+
+            document.getElementById('commentsContainer').appendChild(commentContainer);
+
+            // Clear the form
+            document.getElementById('commentForm').reset();
         });
     </script>
 </body>
