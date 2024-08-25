@@ -35,6 +35,12 @@
         .zoom:hover {
             transform: scale(1.5); /* (150% zoom) */
         }
+        .top-hover {
+            display: none;
+        }
+        body:hover .top-hover {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -63,7 +69,7 @@
     </nav>
 
     <!-- Green Header 21 -->
-    <header id="header21" class="bg-primary text-white text-center py-3">
+    <header id="header21" class="bg-primary text-white text-center py-3 top-hover">
         <h1 class="font-weight-bold">Grande Ourse</h1>
     </header>
 
