@@ -35,6 +35,13 @@
         .zoom:hover {
             transform: scale(1.5); /* (150% zoom) */
         }
+        .navbar {
+            display: none;
+            transition: top 0.3s;
+        }
+        .show-navbar {
+            display: block !important;
+        }
     </style>
 </head>
 <body>
@@ -84,10 +91,10 @@
 
     <div class="container mt-5">
         <div class="poem">  
-            <p>J'admirais cette Grande Ourse scintillante;</p>
-            <p>Est venue l'étoile filante infinie</p>  
-            <p>Marier la casserolle bouillonnante;</p>
-            <p>En vocation à devenir unies.</p>  
+            <p>Je l'ai vu s'allumer et briller</p>
+            <p>Sur fond d'aurore que je complimente;</p>  
+            <p>Je l'ai vu s'éteindre et se brouiller</p>
+            <p>Sur fond de nocturnité véhémente</p>  
         </div>
     </div>  
 
@@ -108,6 +115,28 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Show navbar on scroll or hover
+        const navbar = document.querySelector('.navbar');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.classList.add('show-navbar');
+            } else {
+                navbar.classList.add('show-navbar');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        document.body.addEventListener('mouseover', () => {
+            navbar.classList.add('show-navbar');
+        });
+
+        document.body.addEventListener('mouseout', () => {
+            navbar.classList.remove('show-navbar');
         });
     </script>
 </body>
