@@ -69,13 +69,26 @@
                 opacity: 0;
             }
         }
-        .bright-star {
+        .shooting-star-reverse {
             position: absolute;
+            top: 50px; /* Adjust the starting position */
+            right: -100px; /* Start off-screen */
             width: 5px;
             height: 5px;
             background: white;
             border-radius: 50%;
             box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+            animation: shooting-star-reverse 2s linear infinite;
+        }
+        @keyframes shooting-star-reverse {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100vw) translateY(100px); /* Adjust the ending position */
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -110,12 +123,8 @@
     <!-- Green Header 21 -->
     <header id="header21" class="bg-primary text-white text-center py-3 position-relative">
         <h1 class="font-weight-bold">Grande Ourse</h1>
-        <!-- Bright Stars -->
-        <div class="bright-star" style="top: 20px; left: 50px;"></div>
-        <div class="bright-star" style="top: 40px; left: 150px;"></div>
-        <div class="bright-star" style="top: 60px; left: 250px;"></div>
-        <div class="bright-star" style="top: 80px; left: 350px;"></div>
-        <div class="bright-star" style="top: 100px; left: 450px;"></div>
+        <!-- Shooting Star Reverse -->
+        <div class="shooting-star-reverse"></div>
     </header>
 
     <!-- Poem under Header 21 -->
