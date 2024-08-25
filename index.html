@@ -169,17 +169,47 @@
             });
         });
 
+        // Function to save comments to localStorage
+        function saveComments(comments) {
+            localStorage.setItem('comments', JSON.stringify(comments));
+        }
+
+        // Function to load comments from localStorage
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            return comments;
+        }
+
+        // Function to display comments
+        function displayComments(comments) {
+            const commentsContainer = document.getElementById('commentsContainer');
+            commentsContainer.innerHTML = '';
+            comments.forEach(comment => {
+                const commentContainer = document.createElement('div');
+                commentContainer.classList.add('comment');
+                commentContainer.innerHTML = `<strong>${comment.name}</strong> <em>${comment.date}</em><p>${comment.message}</p>`;
+                commentsContainer.appendChild(commentContainer);
+            });
+        }
+
+        // Load and display comments on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const comments = loadComments();
+            displayComments(comments);
+        });
+
+        // Handle form submission
         document.getElementById('commentForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('commentName').value;
             const message = document.getElementById('commentMessage').value;
             const date = new Date().toLocaleString();
 
-            const commentContainer = document.createElement('div');
-            commentContainer.classList.add('comment');
-            commentContainer.innerHTML = `<strong>${name}</strong> <em>${date}</em><p>${message}</p>`;
-
-            document.getElementById('commentsContainer').appendChild(commentContainer);
+            const newComment = { name, message, date };
+            const comments = loadComments();
+            comments.push(newComment);
+            saveComments(comments);
+            displayComments(comments);
 
             // Clear the form
             document.getElementById('commentForm').reset();
