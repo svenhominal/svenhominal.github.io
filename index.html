@@ -44,6 +44,9 @@
         .comment {
             margin-bottom: 20px;
         }
+        .comment button {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -184,12 +187,20 @@
         function displayComments(comments) {
             const commentsContainer = document.getElementById('commentsContainer');
             commentsContainer.innerHTML = '';
-            comments.forEach(comment => {
+            comments.forEach((comment, index) => {
                 const commentContainer = document.createElement('div');
                 commentContainer.classList.add('comment');
-                commentContainer.innerHTML = `<strong>${comment.name}</strong> <em>${comment.date}</em><p>${comment.message}</p>`;
+                commentContainer.innerHTML = `<strong>${comment.name}</strong> <em>${comment.date}</em><p>${comment.message}</p><button class="btn btn-danger btn-sm" onclick="deleteComment(${index})">Delete</button>`;
                 commentsContainer.appendChild(commentContainer);
             });
+        }
+
+        // Function to delete a comment
+        function deleteComment(index) {
+            const comments = loadComments();
+            comments.splice(index, 1);
+            saveComments(comments);
+            displayComments(comments);
         }
 
         // Load and display comments on page load
