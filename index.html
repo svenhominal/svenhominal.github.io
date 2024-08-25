@@ -35,13 +35,6 @@
         .zoom:hover {
             transform: scale(1.5); /* (150% zoom) */
         }
-        .navbar {
-            display: none;
-            transition: top 0.3s;
-        }
-        .show-navbar {
-            display: block !important;
-        }
     </style>
 </head>
 <body>
@@ -91,16 +84,21 @@
 
     <div class="container mt-5">
         <div class="poem">  
-            <p>Je l'ai vu s'allumer et briller</p>
-            <p>Sur fond d'aurore que je complimente;</p>  
-            <p>Je l'ai vu s'éteindre et se brouiller</p>
-            <p>Sur fond de nocturnité véhémente</p>  
+            <p>J'admirais cette Grande Ourse scintillante;</p>
+            <p>Est venue l'étoile filante infinie</p>  
+            <p>Marier la casserolle bouillonnante;</p>
+            <p>En vocation à devenir unies.</p>  
         </div>
     </div>  
 
     <!-- Image with zoom functionality -->
     <div class="container text-center mt-5 mb-5" style="margin-bottom: 300px;">
         <img src="image_sven_2.jpg" alt="Image Sven 2" class="zoom" width="100" height="100">
+    </div>  
+
+    <!-- GIF with zoom functionality -->
+    <div class="container text-center mt-5 mb-5" style="margin-bottom: 300px;">
+    <img src="funnydogs-cute.gif" alt="Funny GIF" class="zoom" width="100" height="100">
     </div>
 
     <!-- Bootstrap JS and dependencies -->
@@ -115,28 +113,6 @@
                     behavior: 'smooth'
                 });
             });
-        });
-
-        // Show navbar on scroll or hover
-        const navbar = document.querySelector('.navbar');
-        let lastScrollTop = 0;
-
-        window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navbar.classList.add('show-navbar');
-            } else {
-                navbar.classList.add('show-navbar');
-            }
-            lastScrollTop = scrollTop;
-        });
-
-        document.body.addEventListener('mouseover', () => {
-            navbar.classList.add('show-navbar');
-        });
-
-        document.body.addEventListener('mouseout', () => {
-            navbar.classList.remove('show-navbar');
         });
     </script>
 </body>
