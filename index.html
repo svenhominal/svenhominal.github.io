@@ -15,6 +15,81 @@
             color: white;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
+        .bg-primary {
+            background-color: rgb(20, 22, 77) !important;
+        }
+        .poem {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0);
+            border-radius: 10px;
+        }
+        .header-space {
+            margin-bottom: 20px; /* Adjust this value as needed */
+        }
+        .zoom {
+            transition: transform 0.2s; /* Animation */
+        }
+        .zoom:hover {
+            transform: scale(1.5); /* (150% zoom) */
+        }
+        .comment-section {
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .comment {
+            margin-bottom: 20px;
+        }
+        .comment button {
+            margin-left: 10px;
+        }
+        .shooting-star {
+            position: absolute;
+            top: 50px; /* Adjust the starting position */
+            left: -100px; /* Start off-screen */
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+            animation: shooting-star 2s linear infinite;
+        }
+        @keyframes shooting-star {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(100px); /* Adjust the ending position */
+                opacity: 0;
+            }
+        }
+        .shooting-star-reverse {
+            position: absolute;
+            top: 50px; /* Adjust the starting position */
+            right: -100px; /* Start off-screen */
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+            animation: shooting-star-reverse 2s linear infinite;
+        }
+        @keyframes shooting-star-reverse {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100vw) translateY(100px); /* Adjust the ending position */
+                opacity: 0;
+            }
+        }
         #drop-area {
             border: 2px dashed #007bff;
             padding: 20px;
