@@ -352,22 +352,21 @@
         }
 
         function uploadFile(file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const csvContent = event.target.result;
-                localStorage.setItem('uploadedCSV', csvContent);
-                alert('CSV file uploaded and stored successfully!');
-            };
-            reader.readAsText(file);
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
     </script>
-</body>
-</html>
-
-
-
-
-
-
 </body>
 </html>
