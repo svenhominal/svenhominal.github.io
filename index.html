@@ -216,83 +216,81 @@
     <!-- Spacer to ensure 800px space at the end of the page -->
     <div style="height: 800px;"></div>
 
- 
-
-        <!-- CSV Upload Section -->
-        <div class="container mt-5 mb-5">
-            <h2 class="text-center">Upload CSV File</h2>
-            <div id="drop-area" class="border border-primary p-5 text-center">
-                <p>Drag & Drop your CSV file here</p>
-                <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
-                <button class="btn btn-primary" onclick="document.getElementById('fileElem').click()">Select File</button>
-            </div>
+    <!-- CSV Upload Section -->
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center">Upload CSV File</h2>
+        <div id="drop-area" class="border border-primary p-5 text-center">
+            <p>Drag & Drop your CSV file here</p>
+            <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
+            <button class="btn btn-primary" onclick="document.getElementById('fileElem').click()">Select File</button>
         </div>
-    
-        <!-- Bootstrap JS and dependencies -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>
-            // CSV Upload Handling
-            const dropArea = document.getElementById('drop-area');
-    
-            // Prevent default drag behaviors
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, preventDefaults, false);
-                document.body.addEventListener(eventName, preventDefaults, false);
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // CSV Upload Handling
+        const dropArea = document.getElementById('drop-area');
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        // Highlight drop area when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        // Handle dropped files
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight(e) {
+            dropArea.classList.add('highlight');
+        }
+
+        function unhighlight(e) {
+            dropArea.classList.remove('highlight');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            ([...files]).forEach(uploadFile);
+        }
+
+        function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('http://localhost:8002/upload', { // Updated URL
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
-    
-            // Highlight drop area when item is dragged over it
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dropArea.addEventListener(eventName, highlight, false);
-            });
-    
-            ['dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, unhighlight, false);
-            });
-    
-            // Handle dropped files
-            dropArea.addEventListener('drop', handleDrop, false);
-    
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-    
-            function highlight(e) {
-                dropArea.classList.add('highlight');
-            }
-    
-            function unhighlight(e) {
-                dropArea.classList.remove('highlight');
-            }
-    
-            function handleDrop(e) {
-                const dt = e.dataTransfer;
-                const files = dt.files;
-                handleFiles(files);
-            }
-    
-            function handleFiles(files) {
-                ([...files]).forEach(uploadFile);
-            }
-    
-            function uploadFile(file) {
-                const formData = new FormData();
-                formData.append('file', file);
-    
-                fetch('http://localhost:3000/upload', { // Updated URL
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            }
-        </script>
-    </body>
-    </html>
+        }
+    </script>
+</body>
+</html>
