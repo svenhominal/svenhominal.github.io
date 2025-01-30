@@ -342,7 +342,7 @@
             const formData = new FormData();
             formData.append('file', file);
 
-            fetch('/upload', {
+            fetch('http://localhost:3000/upload', { // Updated URL
                 method: 'POST',
                 body: formData
             })
@@ -356,4 +356,4 @@
         }
     </script>
 </body>
-</html>  
+</html>
