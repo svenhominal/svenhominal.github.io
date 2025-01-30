@@ -275,5 +275,99 @@
             document.getElementById('commentForm').reset();
         });
     </script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Upload</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        #drop-area {
+            border: 2px dashed #007bff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #drop-area.highlight {
+            border-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <!-- ...existing content... -->
+
+    <!-- Add the file drop feature here -->
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center">Upload CSV File</h2>
+        <div id="drop-area" class="border border-primary p-5 text-center">
+            <p>Drag & Drop your CSV file here</p>
+            <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
+            <button class="btn btn-primary" onclick="document.getElementById('fileElem').click()">Select File</button>
+        </div>
+    </div>
+
+    <script>
+        const dropArea = document.getElementById('drop-area');
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        // Highlight drop area when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        // Handle dropped files
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight(e) {
+            dropArea.classList.add('highlight');
+        }
+
+        function unhighlight(e) {
+            dropArea.classList.remove('highlight');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            ([...files]).forEach(uploadFile);
+        }
+
+        function uploadFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const csvContent = event.target.result;
+                localStorage.setItem('uploadedCSV', csvContent);
+                alert('CSV file uploaded and stored successfully!');
+            };
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
 </body>
 </html>
