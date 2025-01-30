@@ -29,4 +29,9 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+});  
+
+app.post('/upload', upload.single('file'), (req, res) => {
+    console.log('File received:', req.file);
+    res.send('File uploaded successfully!');
 });
