@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Sven Hominal</title>
+    <!-- Favicon (PNG généré dynamiquement avec "21") -->
+    <link rel="icon" type="image/png" id="favicon-gen" />
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    
     <style>
+        html {
+            scroll-behavior: auto; /* Pas de défilement animé automatique */
+        }
         body {
             background-image: url('image_sven.jpg');
             background-size: cover;
@@ -14,6 +21,26 @@
             background-attachment: fixed;
             color: white;
             overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-anchor: none; /* Désactive l'ancrage automatique qui peut provoquer un saut */
+        }
+        .navbar {
+            background-color: #1e3a8a !important; /* Bleu foncé différent */
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #e0e7ff !important;
+        }
+        .stylized-name {
+            font-family: 'Brush Script MT', cursive, 'Dancing Script', cursive;
+            font-size: 4rem;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin: 40px 0;
+            transform: rotate(-2deg);
+            font-weight: bold;
         }
         .bg-primary {
             background-color: rgb(20, 22, 77) !important;
@@ -59,6 +86,32 @@
             box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
             animation: shooting-star 2s linear infinite;
         }
+            .shooting-star-fixed {
+                position: fixed;
+                top: 60px;
+                left: -100px;
+                width: 5px;
+                height: 5px;
+                background: white;
+                border-radius: 50%;
+                box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+                animation: shooting-star 2s linear infinite;
+                z-index: 9999;
+                pointer-events: none; /* Évite les interférences avec le scroll */
+            }
+            .shooting-star-reverse-fixed {
+                position: fixed;
+                top: 120px;
+                right: -100px;
+                width: 5px;
+                height: 5px;
+                background: white;
+                border-radius: 50%;
+                box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+                animation: shooting-star-reverse 2s linear infinite;
+                z-index: 9999;
+                pointer-events: none; /* Évite les interférences avec le scroll */
+            }
         @keyframes shooting-star {
             0% {
                 transform: translateX(0) translateY(0);
@@ -103,7 +156,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Sven Hominal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -119,8 +172,10 @@
                         <a class="dropdown-item" href="#header21">Grande Ourse</a>
                         <a class="dropdown-item" href="#header22">Etoile filante</a>
                         <a class="dropdown-item" href="#header24">Vidéo</a>
+                        <a class="dropdown-item" href="#header-standup">Stand-Up</a>
+                        <a class="dropdown-item" href="#header-ecriture">Ecriture</a>
+                        <a class="dropdown-item" href="#header-tiktok">TikTok</a>
                         <a class="dropdown-item" href="#header23">Remerciements</a>
-                        <a class="dropdown-item" href="#header25">Commentaire</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -129,6 +184,13 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Stylized Name Header -->
+    <div class="container-fluid">
+        <div class="stylized-name">
+            Sven Hominal
+        </div>
+    </div>
 
     <!-- Header Watt2Know -->
     <header id="watt2know" class="bg-primary text-white text-center py-3 position-relative">
@@ -193,6 +255,58 @@
         </div>
     </div>
 
+    <!-- Green Header Stand-Up -->
+    <header id="header-standup" class="bg-primary text-white text-center py-3 mt-5 header-space">
+        <h1 class="font-weight-bold">Stand-Up</h1>
+    </header>
+
+    <!-- Stand-Up Video -->
+    <div class="container text-center mt-5 mb-5">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uhk3uazIM-4" allowfullscreen></iframe>
+        </div>
+        <h2 class="mt-4 font-weight-bold" style="font-size: 2rem;">Découvrez mon passage en stand-up !</h2>
+    </div>
+
+    <!-- Green Header Ecriture -->
+    <header id="header-ecriture" class="bg-primary text-white text-center py-3 mt-5 header-space">
+        <h1 class="font-weight-bold">Ecriture</h1>
+    </header>
+
+    <!-- PDF Viewer Section (déchargé jusqu'à proximité) -->
+    <div class="container text-center mt-5 mb-5" id="pdf-section" style="overflow-anchor: none;">
+        <h2 class="mb-4 font-weight-bold" style="font-size: 2rem;">Découvrez mon texte "Amour fluvial"</h2>
+        <div id="pdf-container" style="width:100%;height:600px;border:1px solid #ccc;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;color:#000;font-weight:bold;">
+            Chargement du PDF quand vous vous en approchez...
+        </div>
+        <p class="mt-3">
+            <a href="FR-6--Amour fluvial (3).pdf" target="_blank" class="btn btn-primary">Télécharger le PDF</a>
+        </p>
+    </div>
+
+    <!-- Green Header TikTok -->
+    <header id="header-tiktok" class="bg-primary text-white text-center py-3 mt-5 header-space">
+        <h1 class="font-weight-bold">TikTok</h1>
+    </header>
+
+    <!-- TikTok Section -->
+    <div class="container text-center mt-5 mb-5">
+        <h2 class="mb-4 font-weight-bold" style="font-size: 2rem;">Retrouvez-moi sur TikTok !</h2>
+        <div class="mb-4">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@svenhomy" data-unique-id="svenhomy" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
+                <section>
+                    <a target="_blank" title="@svenhomy" href="https://www.tiktok.com/@svenhomy?refer=creator_embed">@svenhomy</a>
+                </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
+        </div>
+        <p class="mt-3">
+            <a href="https://www.tiktok.com/@svenhomy" target="_blank" class="btn btn-primary btn-lg">
+                <strong>Suivez-moi sur TikTok</strong> →
+            </a>
+        </p>
+    </div>
+
     <!-- Green Header 23 -->
     <header id="header23" class="bg-primary text-white text-center py-3 mt-5 header-space">
         <h1 class="font-weight-bold">Remerciements</h1>
@@ -209,107 +323,86 @@
         <img src="images/funnydogs-cute.gif" alt="Funny GIF" class="zoom img-fluid">
     </div>  
 
-    <!-- Green Header 25 -->
-    <header id="header25" class="bg-primary text-white text-center py-3 mt-5 header-space">
-        <h1 class="font-weight-bold">Commentaire</h1>
-    </header>
-
-    <!-- Comment Form -->
-    <div class="container mt-5 comment-section">
-        <form id="commentForm">
-            <div class="form-group">
-                <label for="commentName">Name</label>
-                <input type="text" class="form-control" id="commentName" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="commentMessage">Comment</label>
-                <textarea class="form-control" id="commentMessage" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Publish</button>
-        </form>
-        <div id="commentsContainer" class="mt-5">
-            <!-- Comments will be displayed here -->
-        </div>
-    </div>
-
     <!-- Spacer to ensure 800px space at the end of the page -->
     <div style="height: 800px;"></div>
-
-    <!-- CSV Upload Section -->
-    <div class="container mt-5 mb-5">
-        <h2 class="text-center">Upload CSV File</h2>
-        <div id="drop-area" class="border border-primary p-5 text-center">
-            <p>Drag & Drop your CSV file here</p>
-            <input type="file" id="fileElem" accept=".csv" style="display:none" onchange="handleFiles(this.files)">
-            <button class="btn btn-primary" onclick="document.getElementById('fileElem').click()">Select File</button>
-        </div>
-    </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // CSV Upload Handling
-        const dropArea = document.getElementById('drop-area');
+        // Génération d'un favicon PNG avec le nombre "21"
+        (function(){
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 64; canvas.height = 64;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#14164d'; // fond bleu foncé cohérent avec la navbar
+                ctx.fillRect(0,0,64,64);
+                ctx.font = 'bold 36px Arial';
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('21', 32, 36);
+                const link = document.getElementById('favicon-gen');
+                if (link) link.href = canvas.toDataURL('image/png');
+            } catch(e) { /* silencieux */ }
+        })();
 
-        // Prevent default drag behaviors
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, preventDefaults, false);
-            document.body.addEventListener(eventName, preventDefaults, false);
-        });
-
-        // Highlight drop area when item is dragged over it
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, highlight, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, unhighlight, false);
-        });
-
-        // Handle dropped files
-        dropArea.addEventListener('drop', handleDrop, false);
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        // Always show shooting stars on scroll (optimized)
+        function addShootingStars() {
+            if (!document.getElementById('shooting-star-fixed')) {
+                const star = document.createElement('div');
+                star.className = 'shooting-star-fixed';
+                star.id = 'shooting-star-fixed';
+                document.body.appendChild(star);
+            }
+            if (!document.getElementById('shooting-star-reverse-fixed')) {
+                const starReverse = document.createElement('div');
+                starReverse.className = 'shooting-star-reverse-fixed';
+                starReverse.id = 'shooting-star-reverse-fixed';
+                document.body.appendChild(starReverse);
+            }
         }
+        addShootingStars();
+        
+        // Chargement différé du PDF pour éviter un saut de scroll initial
+        (function(){
+            const pdfContainer = document.getElementById('pdf-container');
+            if (!pdfContainer) return;
+            let loaded = false;
+            const loadPDF = () => {
+                if (loaded) return;
+                loaded = true;
+                pdfContainer.innerHTML = '';
+                const iframe = document.createElement('iframe');
+                iframe.src = 'FR-6--Amour fluvial (3).pdf';
+                iframe.width = '100%';
+                iframe.height = '600px';
+                iframe.loading = 'lazy';
+                iframe.setAttribute('tabindex','-1');
+                iframe.style.border = '1px solid #ccc';
+                iframe.style.background = 'white';
+                pdfContainer.appendChild(iframe);
+                // Rend le focus au body pour éviter un scroll automatique
+                setTimeout(()=>{ document.body.focus(); }, 50);
+            };
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { loadPDF(); observer.disconnect(); } });
+            }, { root: null, rootMargin: '200px', threshold: 0 });
+            observer.observe(pdfContainer);
+        })();
 
-        function highlight(e) {
-            dropArea.classList.add('highlight');
-        }
-
-        function unhighlight(e) {
-            dropArea.classList.remove('highlight');
-        }
-
-        function handleDrop(e) {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            handleFiles(files);
-        }
-
-        function handleFiles(files) {
-            ([...files]).forEach(uploadFile);
-        }
-
-        function uploadFile(file) {
-            const formData = new FormData();
-            formData.append('file', file);
-
-            fetch('http://localhost:8002/upload', { // Updated URL
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
+        // Optimized scroll listener with throttling
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (!scrollTimeout) {
+                scrollTimeout = setTimeout(function() {
+                    addShootingStars();
+                    scrollTimeout = null;
+                }, 16); // ~60fps
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
